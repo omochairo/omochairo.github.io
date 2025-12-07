@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IroPapa Profile | 育児ハック開発リポジトリ @GitHub</title>
+	<meta name="description" content="元ソニーエンジニア「いろパパ」の技術プロフィール。育児メディア『おもちゃいろ』『おうちいろ』の開発ログ、公開ソースコード、自作ツール（診断アプリ・計算機）の技術スタックを紹介するエンジニアリングポートフォリオ。">
+    <style>
+        /* デザインテーマ：テック・エンジニアリング（青・白・グレー基調） */
+        :root {
+            --primary-color: #0066cc;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-sub: #7f8c8d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 800px; /* 前回より広く、PC閲覧も意識 */
+            margin: 0 auto;
+        }
+
+        /* ヘッダー：ラボ（研究所）の雰囲気 */
+        header {
+            text-align: left;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 15px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        h1::before {
+            content: '🛠';
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-top: 5px;
+            font-family: monospace; /* エンジニアっぽさを演出 */
+        }
+
+        /* セクション見出し */
+        h2 {
+            font-size: 18px;
+            margin: 30px 0 15px;
+            color: #444;
+            display: flex;
+            align-items: center;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        /* グリッドレイアウト（アプリストア風） */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        /* カードデザイン */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge-app { background-color: #e3f2fd; color: #1565c0; }
+        .badge-game { background-color: #fff3e0; color: #e65100; }
+        .badge-media { background-color: #e8f5e9; color: #2e7d32; }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
+            color: var(--primary-color);
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+            flex-grow: 1;
+        }
+
+        .tech-spec {
+            font-size: 11px;
+            color: #999;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            font-family: monospace;
+        }
+
+        /* フッター */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #ddd;
+        }
+
+        /* スマホ調整 */
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Omochairo Tech Lab</h1>
+            <div class="subtitle">Engineering for Parenting / Web Tools Repository</div>
+            <p style="font-size: 13px; margin-top: 15px; color: #555;">
+                元ソニーエンジニアが開発した「育児支援ツール」と「知育ゲーム」の公開リポジトリです。<br>
+                インストール不要。すべての処理はブラウザ上で完結します。
+            </p>
+        </header>
+
+        <!-- メインメディア（データソース） -->
+        <h2>Data Source / Main Media</h2>
+        <div class="grid">
+            <a href="https://omcha.jp" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">🧸 おもちゃいろ</span>
+                    <span class="badge badge-media">MEDIA</span>
+                </div>
+                <div class="card-desc">専門家（医療従事者・エンジニア）による育児グッズ分析データベース。</div>
+                <div class="tech-spec">Domain: omcha.jp / Role: Analysis</div>
+            </a>
+            <a href="https://home.omcha.jp" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">🏠 おうちいろ</span>
+                    <span class="badge badge-media">GADGET LOG</span>
+                </div>
+                <div class="card-desc">家事効率化のためのガジェット検証・スペック比較ログ。</div>
+                <div class="tech-spec">Domain: home.omcha.jp / Role: Tech Review</div>
+            </a>
+        </div>
+
+        <!-- 診断・分析ツール -->
+        <h2>Diagnostic Tools (Algorithm)</h2>
+        <div class="grid">
+            <a href="https://omcha.jp/kids_mbtilike/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">16Type 性格分析ツール</span>
+                    <span class="badge badge-app">APP</span>
+                </div>
+                <div class="card-desc">MBTI理論を応用した子供の特性分析アルゴリズム。接し方の最適解を出力。</div>
+                <div class="tech-spec">Target: Kids / Logic: 16Personalities</div>
+            </a>
+
+            <a href="https://omcha.jp/kids-naraigoto-shindan-type/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">才能発掘・習い事マッチング</span>
+                    <span class="badge badge-app">APP</span>
+                </div>
+                <div class="card-desc">3歳～小学生対応。行動パターンから最適な課外活動を推論します。</div>
+                <div class="tech-spec">Target: 3yo+ / Logic: Aptitude Test</div>
+            </a>
+
+            <a href="https://omcha.jp/ikuji_sutoresu/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">育児ストレスチェッカー</span>
+                    <span class="badge badge-app">APP</span>
+                </div>
+                <div class="card-desc">質問回答から現在の精神負荷レベルを数値化し、危険度を判定。</div>
+                <div class="tech-spec">Logic: Stress Level Analysis</div>
+            </a>
+
+            <a href="https://omcha.jp/potty-training-app-free/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">トイトレ記録・分析アプリ</span>
+                    <span class="badge badge-app">PWA Like</span>
+                </div>
+                <div class="card-desc">排泄リズムを記録・可視化。オムツ卒業のためのシンプルツール。</div>
+                <div class="tech-spec">Feature: No Login Required</div>
+            </a>
+            
+            <a href="https://omcha.jp/namae-no-kimekata-generator/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">名称生成ジェネレータ</span>
+                    <span class="badge badge-app">TOOL</span>
+                </div>
+                <div class="card-desc">条件に基づき、子供の名前やハンドルネームをランダム生成。</div>
+                <div class="tech-spec">Logic: Random String Generation</div>
+            </a>
+        </div>
+
+        <!-- ブラウザゲーム -->
+        <h2>Browser Games (Canvas/JS)</h2>
+        <div class="grid">
+            <a href="https://omcha.jp/falling-block-puzzle-free-style/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">Falling Block Puzzle</span>
+                    <span class="badge badge-game">GAME</span>
+                </div>
+                <div class="card-desc">テトリス風の落ち物パズル。JSで実装された軽量ブラウザゲーム。</div>
+                <div class="tech-spec">Engine: JavaScript / Device: Mobile & PC</div>
+            </a>
+
+            <a href="https://omcha.jp/game_sagasie/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">Object Finding (探し絵)</span>
+                    <span class="badge badge-game">GAME</span>
+                </div>
+                <div class="card-desc">2歳児の認知能力向上を目的とした探索ゲーム。</div>
+                <div class="tech-spec">Target: 2yo / Focus: Cognitive Skills</div>
+            </a>
+
+            <a href="https://omcha.jp/music-game/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">Sound Quiz (絶対音感)</span>
+                    <span class="badge badge-game">GAME</span>
+                </div>
+                <div class="card-desc">楽器の音色を聴き分けるクイズ形式の聴覚トレーニング。</div>
+                <div class="tech-spec">Target: 3yo+ / Focus: Auditory</div>
+            </a>
+            
+            <a href="https://omcha.jp/game_pazuru/" target="_blank" class="card">
+                <div class="card-header">
+                    <span class="card-title">Drag & Drop Puzzle</span>
+                    <span class="badge badge-game">GAME</span>
+                </div>
+                <div class="card-desc">ドラッグ操作の練習に最適な幼児向けジグソーパズル。</div>
+                <div class="tech-spec">UI: Drag & Drop API</div>
+            </a>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 IroPapa Engineering Lab.</p>
+            <p>Hosted on Netlify</p>
+        </footer>
+    </div>
+
+</body>
+</html>
