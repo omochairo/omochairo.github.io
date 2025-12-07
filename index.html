@@ -3,291 +3,606 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>IroPapa Profile | 育児ハック開発リポジトリ @GitHub</title>
-	<meta name="description" content="元ソニーエンジニア「いろパパ」の技術プロフィール。育児メディア『おもちゃいろ』『おうちいろ』の開発ログ、公開ソースコード、自作ツール（診断アプリ・計算機）の技術スタックを紹介するエンジニアリングポートフォリオ。">
+    <title>IroPapa Software Collection | 育児支援ツール & 知育ゲーム</title>
+    <meta name="description" content="元ソニーエンジニアが開発した育児支援ツールと知育ゲームのコレクション。診断アプリ、ブラウザゲーム、計算ツールなど、すべてブラウザ上で動作します。">
     <style>
-        /* デザインテーマ：テック・エンジニアリング（青・白・グレー基調） */
         :root {
-            --primary-color: #0066cc;
-            --bg-color: #f0f2f5;
-            --card-bg: #ffffff;
-            --text-main: #2c3e50;
-            --text-sub: #7f8c8d;
+            --gh-bg: #0d1117;
+            --gh-bg-secondary: #161b22;
+            --gh-border: #30363d;
+            --gh-text: #c9d1d9;
+            --gh-text-secondary: #8b949e;
+            --gh-link: #58a6ff;
+            --gh-link-hover: #79c0ff;
+            --gh-green: #238636;
+            --gh-blue: #1f6feb;
+            --gh-orange: #d29922;
+            --gh-purple: #8957e5;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+        * {
             margin: 0;
-            padding: 20px;
-            line-height: 1.5;
-        }
-
-        .container {
-            max-width: 800px; /* 前回より広く、PC閲覧も意識 */
-            margin: 0 auto;
-        }
-
-        /* ヘッダー：ラボ（研究所）の雰囲気 */
-        header {
-            text-align: left;
-            margin-bottom: 30px;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 15px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        h1 {
-            font-size: 24px;
-            margin: 0;
-            color: #333;
-            display: flex;
-            align-items: center;
-        }
-
-        h1::before {
-            content: '🛠';
-            margin-right: 10px;
-            font-size: 28px;
-        }
-
-        .subtitle {
-            font-size: 14px;
-            color: var(--text-sub);
-            margin-top: 5px;
-            font-family: monospace; /* エンジニアっぽさを演出 */
-        }
-
-        /* セクション見出し */
-        h2 {
-            font-size: 18px;
-            margin: 30px 0 15px;
-            color: #444;
-            display: flex;
-            align-items: center;
-            border-left: 4px solid var(--primary-color);
-            padding-left: 10px;
-        }
-
-        /* グリッドレイアウト（アプリストア風） */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-        }
-
-        /* カードデザイン */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            padding: 15px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-color: var(--primary-color);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .badge {
-            font-size: 10px;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .badge-app { background-color: #e3f2fd; color: #1565c0; }
-        .badge-game { background-color: #fff3e0; color: #e65100; }
-        .badge-media { background-color: #e8f5e9; color: #2e7d32; }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0;
-            color: var(--primary-color);
-        }
-
-        .card-desc {
-            font-size: 13px;
-            color: #666;
-            margin-top: 5px;
-            flex-grow: 1;
-        }
-
-        .tech-spec {
-            font-size: 11px;
-            color: #999;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #eee;
-            font-family: monospace;
-        }
-
-        /* フッター */
-        footer {
-            text-align: center;
-            margin-top: 50px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+            background-color: var(--gh-bg);
+            color: var(--gh-text);
+            line-height: 1.6;
             padding: 20px;
-            font-size: 12px;
-            color: #888;
-            border-top: 1px solid #ddd;
         }
 
-        /* スマホ調整 */
-        @media (max-width: 600px) {
-            .grid {
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .repo-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--gh-border);
+        }
+
+        .repo-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .repo-owner {
+            font-size: 20px;
+            color: var(--gh-link);
+            text-decoration: none;
+        }
+
+        .repo-owner:hover {
+            text-decoration: underline;
+        }
+
+        .repo-slash {
+            font-size: 20px;
+            color: var(--gh-text-secondary);
+        }
+
+        .repo-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gh-link);
+        }
+
+        .repo-visibility {
+            display: inline-block;
+            padding: 2px 7px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid var(--gh-border);
+            border-radius: 2em;
+            margin-left: 8px;
+            color: var(--gh-text-secondary);
+        }
+
+        .repo-description {
+            font-size: 16px;
+            color: var(--gh-text);
+            margin-bottom: 16px;
+        }
+
+        .repo-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--gh-text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .repo-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .readme-section {
+            background: var(--gh-bg-secondary);
+            border: 1px solid var(--gh-border);
+            border-radius: 6px;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            padding: 16px;
+            border-bottom: 1px solid var(--gh-border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .section-content {
+            padding: 16px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            background: var(--gh-bg-secondary);
+            border: 1px solid var(--gh-border);
+            border-radius: 6px;
+            padding: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            border-color: var(--gh-link);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .project-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .project-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gh-link);
+            flex: 1;
+            word-break: break-word;
+        }
+
+        .project-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 2em;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .badge-app {
+            background: rgba(31, 111, 235, 0.15);
+            color: var(--gh-blue);
+        }
+
+        .badge-game {
+            background: rgba(210, 153, 34, 0.15);
+            color: var(--gh-orange);
+        }
+
+        .badge-tool {
+            background: rgba(137, 87, 229, 0.15);
+            color: var(--gh-purple);
+        }
+
+        .project-description {
+            font-size: 12px;
+            color: var(--gh-text-secondary);
+            margin-bottom: 12px;
+            flex: 1;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: var(--gh-text-secondary);
+            padding-top: 12px;
+            border-top: 1px solid var(--gh-border);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gh-text);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--gh-text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <header>
-            <h1>Omochairo Tech Lab</h1>
-            <div class="subtitle">Engineering for Parenting / Web Tools Repository</div>
-            <p style="font-size: 13px; margin-top: 15px; color: #555;">
-                元ソニーエンジニアが開発した「育児支援ツール」と「知育ゲーム」の公開リポジトリです。<br>
-                インストール不要。すべての処理はブラウザ上で完結します。
-            </p>
-        </header>
-
-        <!-- メインメディア（データソース） -->
-        <h2>Data Source / Main Media</h2>
-        <div class="grid">
-            <a href="https://omcha.jp" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">🧸 おもちゃいろ</span>
-                    <span class="badge badge-media">MEDIA</span>
+        <div class="repo-header">
+            <div class="repo-title">
+                <a href="https://github.com/IroPapa" class="repo-owner">IroPapa</a>
+                <span class="repo-slash">/</span>
+                <span class="repo-name">software-collection</span>
+                <span class="repo-visibility">Public</span>
+            </div>
+            <div class="repo-description">
+                🧸 育児支援ツール & 知育ゲーム | ブラウザで動作する診断アプリ・計算機・ゲームのコレクション
+            </div>
+            <div class="repo-meta">
+                <div class="repo-meta-item">
+                    📦 14 Software Projects
                 </div>
-                <div class="card-desc">専門家（医療従事者・エンジニア）による育児グッズ分析データベース。</div>
-                <div class="tech-spec">Domain: omcha.jp / Role: Analysis</div>
-            </a>
-            <a href="https://home.omcha.jp" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">🏠 おうちいろ</span>
-                    <span class="badge badge-media">GADGET LOG</span>
+                <div class="repo-meta-item">
+                    🔗 omcha.jp
                 </div>
-                <div class="card-desc">家事効率化のためのガジェット検証・スペック比較ログ。</div>
-                <div class="tech-spec">Domain: home.omcha.jp / Role: Tech Review</div>
-            </a>
+                <div class="repo-meta-item">
+                    ⚡ No Installation Required
+                </div>
+            </div>
         </div>
 
-        <!-- 診断・分析ツール -->
-        <h2>Diagnostic Tools (Algorithm)</h2>
-        <div class="grid">
-            <a href="https://omcha.jp/kids_mbtilike/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">16Type 性格分析ツール</span>
-                    <span class="badge badge-app">APP</span>
-                </div>
-                <div class="card-desc">MBTI理論を応用した子供の特性分析アルゴリズム。接し方の最適解を出力。</div>
-                <div class="tech-spec">Target: Kids / Logic: 16Personalities</div>
-            </a>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">14</div>
+                <div class="stat-label">Total Software</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Diagnostic Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">7</div>
+                <div class="stat-label">Browser Games</div>
+            </div>
+        </div>
 
-            <a href="https://omcha.jp/kids-naraigoto-shindan-type/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">才能発掘・習い事マッチング</span>
-                    <span class="badge badge-app">APP</span>
-                </div>
-                <div class="card-desc">3歳～小学生対応。行動パターンから最適な課外活動を推論します。</div>
-                <div class="tech-spec">Target: 3yo+ / Logic: Aptitude Test</div>
-            </a>
+        <!-- 診断ツール -->
+        <div class="readme-section">
+            <div class="section-header">
+                <span class="section-title">🔬 Diagnostic & Analysis Tools</span>
+            </div>
+            <div class="section-content">
+                <div class="projects-grid">
+                    
+                    <a href="https://omcha.jp/kids_mbtilike/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🧠</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">子供向け性格タイプ診断（MBTI風）</div>
+                            </div>
+                            <span class="project-badge badge-app">APP</span>
+                        </div>
+                        <div class="project-description">
+                            MBTIや16personalitiesを子育てヒントに活用。子供の性格タイプを診断して最適な接し方を提案します。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/5/1</div>
+                            <div class="meta-item">🎯 Personality Analysis</div>
+                        </div>
+                    </a>
 
-            <a href="https://omcha.jp/ikuji_sutoresu/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">育児ストレスチェッカー</span>
-                    <span class="badge badge-app">APP</span>
-                </div>
-                <div class="card-desc">質問回答から現在の精神負荷レベルを数値化し、危険度を判定。</div>
-                <div class="tech-spec">Logic: Stress Level Analysis</div>
-            </a>
+                    <a href="https://omcha.jp/kids-naraigoto-shindan-type/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🎓</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">キッズ習い事診断</div>
+                            </div>
+                            <span class="project-badge badge-app">APP</span>
+                        </div>
+                        <div class="project-description">
+                            3歳～小学生対象。簡単12問でお子さんの新たな才能を発見し、最適な習い事を提案します。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/6/1</div>
+                            <div class="meta-item">👶 3yo～小学生</div>
+                        </div>
+                    </a>
 
-            <a href="https://omcha.jp/potty-training-app-free/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">トイトレ記録・分析アプリ</span>
-                    <span class="badge badge-app">PWA Like</span>
+                    <a href="https://omcha.jp/kodomo_9type_kishitsu_shindan_software/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">✨</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">9タイプ気質診断ソフト</div>
+                            </div>
+                            <span class="project-badge badge-app">APP</span>
+                        </div>
+                        <div class="project-description">
+                            赤ちゃんから小学生まで対応。子供の隠れた才能を発見する9つの気質タイプ診断ツール。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/6/3</div>
+                            <div class="meta-item">👶 赤ちゃん～小学生</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/ikuji_sutoresu/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">💚</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">育児ストレスチェック診断</div>
+                            </div>
+                            <span class="project-badge badge-app">APP</span>
+                        </div>
+                        <div class="project-description">
+                            育児ノイローゼになる前に危険度を確認。簡単なチェックで現在のストレスレベルを診断します。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/6/4</div>
+                            <div class="meta-item">⚠️ Mental Health</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/big5_kids/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">📊</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">子供向けビッグファイブ性格診断</div>
+                            </div>
+                            <span class="project-badge badge-app">APP</span>
+                        </div>
+                        <div class="project-description">
+                            幼児・小学生の特性理解に。心理学のビッグファイブ理論に基づく性格診断ツール。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/8/31</div>
+                            <div class="meta-item">🎯 Big Five Model</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/oyakokankei-shindan/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">👨‍👩‍👧</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">親子関係診断テスト</div>
+                            </div>
+                            <span class="project-badge badge-app">APP</span>
+                        </div>
+                        <div class="project-description">
+                            8つの質問であなたの子育てスタイルを診断。養育タイプを理解して親子関係を改善します。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/9/1</div>
+                            <div class="meta-item">👪 Parenting Style</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/kosodate_mbtilike/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🧩</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">大人向け16タイプ性格傾向診断</div>
+                            </div>
+                            <span class="project-badge badge-app">APP</span>
+                        </div>
+                        <div class="project-description">
+                            親自身の性格タイプを理解。あなたの強みと子育てのヒントを発見する診断ツール。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/6/16</div>
+                            <div class="meta-item">👤 Adult MBTI</div>
+                        </div>
+                    </a>
+
                 </div>
-                <div class="card-desc">排泄リズムを記録・可視化。オムツ卒業のためのシンプルツール。</div>
-                <div class="tech-spec">Feature: No Login Required</div>
-            </a>
-            
-            <a href="https://omcha.jp/namae-no-kimekata-generator/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">名称生成ジェネレータ</span>
-                    <span class="badge badge-app">TOOL</span>
-                </div>
-                <div class="card-desc">条件に基づき、子供の名前やハンドルネームをランダム生成。</div>
-                <div class="tech-spec">Logic: Random String Generation</div>
-            </a>
+            </div>
         </div>
 
         <!-- ブラウザゲーム -->
-        <h2>Browser Games (Canvas/JS)</h2>
-        <div class="grid">
-            <a href="https://omcha.jp/falling-block-puzzle-free-style/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">Falling Block Puzzle</span>
-                    <span class="badge badge-game">GAME</span>
-                </div>
-                <div class="card-desc">テトリス風の落ち物パズル。JSで実装された軽量ブラウザゲーム。</div>
-                <div class="tech-spec">Engine: JavaScript / Device: Mobile & PC</div>
-            </a>
+        <div class="readme-section">
+            <div class="section-header">
+                <span class="section-title">🎮 Browser Games & Interactive Tools</span>
+            </div>
+            <div class="section-content">
+                <div class="projects-grid">
+                    
+                    <a href="https://omcha.jp/game_sagasie/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🔍</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">どうぶつどこかな？探し絵ゲーム</div>
+                            </div>
+                            <span class="project-badge badge-game">GAME</span>
+                        </div>
+                        <div class="project-description">
+                            2歳・3歳からすぐに遊べる無料ブラウザゲーム。動物を探して認知能力をトレーニング。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/3/18</div>
+                            <div class="meta-item">👶 2yo+</div>
+                        </div>
+                    </a>
 
-            <a href="https://omcha.jp/game_sagasie/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">Object Finding (探し絵)</span>
-                    <span class="badge badge-game">GAME</span>
-                </div>
-                <div class="card-desc">2歳児の認知能力向上を目的とした探索ゲーム。</div>
-                <div class="tech-spec">Target: 2yo / Focus: Cognitive Skills</div>
-            </a>
+                    <a href="https://omcha.jp/game_pazuru/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🧩</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">うみのいきものジグソーパズル</div>
+                            </div>
+                            <span class="project-badge badge-game">GAME</span>
+                        </div>
+                        <div class="project-description">
+                            2歳・3歳から遊べる脳トレパズル。海の生き物をテーマにしたジグソーパズルゲーム。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/3/19</div>
+                            <div class="meta-item">🧠 Brain Training</div>
+                        </div>
+                    </a>
 
-            <a href="https://omcha.jp/music-game/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">Sound Quiz (絶対音感)</span>
-                    <span class="badge badge-game">GAME</span>
+                    <a href="https://omcha.jp/osakanaawase/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🐟</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">どうぶつあわせ！記憶力チャレンジ</div>
+                            </div>
+                            <span class="project-badge badge-game">GAME</span>
+                        </div>
+                        <div class="project-description">
+                            2歳・3歳から脳を鍛える神経衰弱ゲーム。記憶力を楽しくトレーニング。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/3/21</div>
+                            <div class="meta-item">🧠 Memory Game</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/fishcatch/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🎣</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">あみでキャッチ！おさかなつかまえゲーム</div>
+                            </div>
+                            <span class="project-badge badge-game">GAME</span>
+                        </div>
+                        <div class="project-description">
+                            2歳・3歳から指先トレーニング。網でお魚をキャッチするアクションゲーム。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/3/21</div>
+                            <div class="meta-item">🖱️ Motor Skills</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/blockotoshi/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🎯</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">どうぶつコロリ！ブロック落とし</div>
+                            </div>
+                            <span class="project-badge badge-game">GAME</span>
+                        </div>
+                        <div class="project-description">
+                            開発中のブロック落としパズルゲーム。動物をテーマにした楽しいパズルゲーム。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/3/21</div>
+                            <div class="meta-item">🚧 In Development</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/music-game/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🎵</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">楽器音当てクイズゲーム</div>
+                            </div>
+                            <span class="project-badge badge-game">GAME</span>
+                        </div>
+                        <div class="project-description">
+                            3歳・4歳で楽しめる音楽ゲーム。4つのレベルで記憶力と聴覚をトレーニング。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/8/31</div>
+                            <div class="meta-item">🎼 Audio Training</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/falling-block-puzzle-free-style/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🧱</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">テトリス風落ちゲー</div>
+                            </div>
+                            <span class="project-badge badge-game">GAME</span>
+                        </div>
+                        <div class="project-description">
+                            登録・DL不要。ブラウザですぐ遊べるテトリス風パズルゲーム。スマホ・PC両対応。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/12/1</div>
+                            <div class="meta-item">📱 Mobile & PC</div>
+                        </div>
+                    </a>
+
                 </div>
-                <div class="card-desc">楽器の音色を聴き分けるクイズ形式の聴覚トレーニング。</div>
-                <div class="tech-spec">Target: 3yo+ / Focus: Auditory</div>
-            </a>
-            
-            <a href="https://omcha.jp/game_pazuru/" target="_blank" class="card">
-                <div class="card-header">
-                    <span class="card-title">Drag & Drop Puzzle</span>
-                    <span class="badge badge-game">GAME</span>
-                </div>
-                <div class="card-desc">ドラッグ操作の練習に最適な幼児向けジグソーパズル。</div>
-                <div class="tech-spec">UI: Drag & Drop API</div>
-            </a>
+            </div>
         </div>
 
-        <footer>
-            <p>&copy; 2025 IroPapa Engineering Lab.</p>
-            <p>Hosted on Netlify</p>
+        <!-- ユーティリティツール -->
+        <div class="readme-section">
+            <div class="section-header">
+                <span class="section-title">🛠️ Utility Tools</span>
+            </div>
+            <div class="section-content">
+                <div class="projects-grid">
+                    
+                    <a href="https://omcha.jp/namae-no-kimekata-generator/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">✨</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">名前ジェネレータ</div>
+                            </div>
+                            <span class="project-badge badge-tool">TOOL</span>
+                        </div>
+                        <div class="project-description">
+                            赤ちゃんの名付けからネトゲまで対応。後悔しない名前を生成する無料ツール。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/8/28</div>
+                            <div class="meta-item">🎲 Random Generator</div>
+                        </div>
+                    </a>
+
+                    <a href="https://omcha.jp/potty-training-app-free/" target="_blank" class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🚽</span>
+                            <div style="flex: 1;">
+                                <div class="project-title">トイトレアプリ</div>
+                            </div>
+                            <span class="project-badge badge-tool">APP</span>
+                        </div>
+                        <div class="project-description">
+                            2歳3歳4歳におすすめ。シンプルに必要な機能だけを搭載した無料トイレトレーニングアプリ。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">📅 2025/11/30</div>
+                            <div class="meta-item">👶 Toilet Training</div>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align: center; margin-top: 48px; padding: 24px 0; border-top: 1px solid var(--gh-border); color: var(--gh-text-secondary); font-size: 12px;">
+            <p>⚡ Powered by <strong>Vanilla JavaScript</strong> | 🚀 Hosted on <strong>GitHub Pages</strong></p>
+            <p style="margin-top: 8px;">© 2025 IroPapa Engineering Lab. All software is browser-based and requires no installation.</p>
+            <p style="margin-top: 8px;">💡 Main Site: <a href="https://omcha.jp" style="color: var(--gh-link);">omcha.jp</a></p>
         </footer>
     </div>
-
 </body>
 </html>
