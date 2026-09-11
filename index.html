@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IroPapa Software Collection | 育児支援ツール & 知育ゲーム</title>
     <meta name="description" content="元ソニーエンジニアが開発した育児支援ツールと知育ゲームのコレクション。診断アプリ、ブラウザゲーム、計算ツールなど、すべてブラウザ上で動作します。 ">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="IroPapa Software Collection | 育児支援ツール & 知育ゲーム">
+    <meta property="og:description" content="元ソニーエンジニアが開発した育児支援ツールと知育ゲームのコレクション。診断アプリ、ブラウザゲーム、計算ツール、知育玩具比較サイトなど、すべてブラウザ上で動作します。">
+    <meta property="og:url" content="https://omochairo.github.io/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="IroPapa Software Collection | 育児支援ツール & 知育ゲーム">
+    <meta name="twitter:description" content="元ソニーエンジニアが開発した育児支援ツールと知育ゲームのコレクション。診断アプリ、ブラウザゲーム、計算ツール、知育玩具比較サイトなど、すべてブラウザ上で動作します。">
     <style>
         :root {
             --gh-bg: #0d1117;
@@ -37,6 +44,13 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
+        }
+
+        .accent-bar {
+            height: 3px;
+            border-radius: 2px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--gh-blue), var(--gh-green), var(--gh-orange), var(--gh-purple));
         }
 
         .repo-header {
@@ -196,6 +210,11 @@
             color: var(--gh-purple);
         }
 
+        .badge-new {
+            background: rgba(35, 134, 54, 0.15);
+            color: var(--gh-green);
+        }
+
         .project-description {
             font-size: 12px;
             color: var(--gh-text-secondary);
@@ -217,6 +236,39 @@
             display: flex;
             align-items: center;
             gap: 4px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 12px;
+            margin-top: auto;
+            border-top: 1px solid var(--gh-border);
+        }
+
+        .link-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 2em;
+            border: 1px solid var(--gh-border);
+            color: var(--gh-text);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .link-pill:hover {
+            border-color: var(--gh-link);
+            color: var(--gh-link);
+        }
+
+        .link-pill-primary {
+            border-color: var(--gh-blue);
+            color: var(--gh-link);
         }
 
         .stats-bar {
@@ -248,10 +300,33 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .readme-section {
+                animation: fade-in-up 0.4s ease-out both;
+            }
+
+            .readme-section:nth-of-type(1) { animation-delay: 0s; }
+            .readme-section:nth-of-type(2) { animation-delay: 0.08s; }
+            .readme-section:nth-of-type(3) { animation-delay: 0.16s; }
+            .readme-section:nth-of-type(4) { animation-delay: 0.24s; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="accent-bar"></div>
         <div class="repo-header">
             <div class="repo-title">
                 <a href="https://github.com/IroPapa" class="repo-owner">IroPapa</a>
@@ -268,6 +343,9 @@
                 </div>
                 <div class="repo-meta-item">
                     🔗 omcha.jp
+                </div>
+                <div class="repo-meta-item">
+                    🧸 <a href="https://navi.omcha.jp/" target="_blank" style="color: inherit;">navi.omcha.jp</a>
                 </div>
                 <div class="repo-meta-item">
                     ⚡ No Installation Required
@@ -288,6 +366,10 @@
                 <div class="stat-value">7</div>
                 <div class="stat-label">Browser Games</div>
             </div>
+            <div class="stat-item">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Web Properties</div>
+            </div>
         </div>
 
         <!-- メインメディア -->
@@ -297,7 +379,29 @@
             </div>
             <div class="section-content">
                 <div class="projects-grid">
-                    
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-icon">🏆</span>
+                            <div style="flex: 1;">
+                                <a href="https://navi.omcha.jp/" target="_blank" class="project-title" style="text-decoration: none;">おもちゃいろ 比較ナビ</a>
+                            </div>
+                            <span class="project-badge badge-new">NEW</span>
+                        </div>
+                        <div class="project-description">
+                            2,456種類の知育玩具を独自スコアでランキング・比較する知育玩具ナビ。価格・年齢・伸ばしたい力から最適な一つが選べます。
+                        </div>
+                        <div class="project-meta">
+                            <div class="meta-item">🌐 navi.omcha.jp</div>
+                            <div class="meta-item">📊 独自スコアリング</div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://navi.omcha.jp/" target="_blank" class="link-pill link-pill-primary">🌐 サイトを見る</a>
+                            <a href="https://navi.omcha.jp/ranking/" target="_blank" class="link-pill">🏆 おすすめランキング</a>
+                            <a href="https://navi.omcha.jp/diagnosis/" target="_blank" class="link-pill">🎯 おもちゃ診断</a>
+                        </div>
+                    </div>
+
                     <a href="https://omcha.jp" target="_blank" class="project-card">
                         <div class="project-header">
                             <span class="project-icon">🧸</span>
@@ -647,7 +751,7 @@
         <footer style="text-align: center; margin-top: 48px; padding: 24px 0; border-top: 1px solid var(--gh-border); color: var(--gh-text-secondary); font-size: 12px;">
             <p>⚡ Powered by <strong>Vanilla JavaScript</strong> | 🚀 Hosted on <strong>GitHub Pages</strong></p>
             <p style="margin-top: 8px;">© 2025 IroPapa Engineering Lab. All software is browser-based and requires no installation.</p>
-            <p style="margin-top: 8px;">💡 Main Site: <a href="https://omcha.jp" style="color: var(--gh-link);">omcha.jp</a></p>
+            <p style="margin-top: 8px;">💡 Main Site: <a href="https://omcha.jp" style="color: var(--gh-link);">omcha.jp</a> | 🏆 知育玩具比較ナビ: <a href="https://navi.omcha.jp/" style="color: var(--gh-link);">navi.omcha.jp</a></p>
         </footer>
     </div>
 </body>
